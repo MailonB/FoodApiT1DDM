@@ -1,0 +1,5 @@
+<project version="4">
+  <component name="KotlinCodeInsightWorkspaceSettings">
+    <option name="optimizeImportsOnTheFly" value="true" />
+  </component>
+</project>

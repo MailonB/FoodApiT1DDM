@@ -9,6 +9,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.foodapit1ddm.Api.AuthClient
 import com.example.foodapit1ddm.Api.AuthResponse
+import com.example.foodapit1ddm.Api.RetrofitClient
 import com.example.foodapit1ddm.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import retrofit2.Call
@@ -38,9 +39,10 @@ class MainActivity : AppCompatActivity() {
 
         // Chamar a função de autenticação
         getAccessToken()
+
     }
 
-    private fun getAccessToken() {
+     private fun getAccessToken() {
         AuthClient.api.getAccessToken(
             clientId = "5930ba22b39d4ec88d24a5a984f49df9",
             clientSecret = "7b00b57476ec4e768199378296bafbf7"
@@ -49,7 +51,12 @@ class MainActivity : AppCompatActivity() {
                 if (response.isSuccessful) {
                     val token = response.body()?.access_token
                     Log.d("TOKEN", "Access Token: $token")
-                    // Aqui você pode armazenar o token ou usá-lo para chamar outras APIs
+                    if (token != null) {
+                        RetrofitClient.instance.searchFoods(
+                            auth = "Bearer $token",
+                            query = "batata"
+                        )
+                    }
                 } else {
                     Log.e("TOKEN", "Erro ao obter token: ${response.code()}")
                 }
@@ -60,4 +67,6 @@ class MainActivity : AppCompatActivity() {
             }
         })
     }
+
+
 }

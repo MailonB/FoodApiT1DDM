@@ -1,13 +1,17 @@
 package com.example.foodapit1ddm
 
+//import com.example.foodapit1ddm.Api.AuthClient
+//import com.example.foodapit1ddm.Api.AuthResponse
+//import com.example.foodapit1ddm.Api.RetrofitClient
 import android.os.Bundle
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.foodapit1ddm.databinding.ActivityMainBinding
+import com.google.android.material.bottomnavigation.BottomNavigationView
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -22,8 +26,7 @@ class MainActivity : AppCompatActivity() {
         val navView: BottomNavigationView = binding.navView
 
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
+
         val appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications
@@ -31,5 +34,31 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+   //Chamar a função de autenticação
+   //     getAccessToken()
     }
+  /*  private fun getAccessToken() {
+        AuthClient.api.getAccessToken(
+            clientId = "5930ba22b39d4ec88d24a5a984f49df9",
+            clientSecret = "7b00b57476ec4e768199378296bafbf7"
+        ).enqueue(object : Callback<AuthResponse> {
+            override fun onResponse(call: Call<AuthResponse>, response: Response<AuthResponse>) {
+                if (response.isSuccessful) {
+                    val token = response.body()?.access_token
+                    Log.d("TOKEN", "Access Token: $token")
+                    if (token != null) {
+                        RetrofitClient.instance.searchFoods(
+                            auth = "Bearer $token",
+                            query = "batata"
+                        )
+                    }
+                } else {
+                    Log.e("TOKEN", "Erro ao obter token: ${response.code()}")
+                }
+            }
+            override fun onFailure(call: Call<AuthResponse>, t: Throwable) {
+                Log.e("TOKEN", "Falha na autenticação: ${t.message}")
+            }
+        })
+    }*/
 }

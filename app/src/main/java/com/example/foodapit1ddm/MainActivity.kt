@@ -4,14 +4,21 @@ package com.example.foodapit1ddm
 //import com.example.foodapit1ddm.Api.AuthResponse
 //import com.example.foodapit1ddm.Api.RetrofitClient
 import android.os.Bundle
+
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.example.foodapit1ddm.Api.AuthClient
+import com.example.foodapit1ddm.Api.AuthResponse
+import com.example.foodapit1ddm.Api.RetrofitClient
 import com.example.foodapit1ddm.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
-
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class MainActivity : AppCompatActivity() {
 
@@ -26,7 +33,6 @@ class MainActivity : AppCompatActivity() {
         val navView: BottomNavigationView = binding.navView
 
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
-
         val appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications
@@ -34,10 +40,13 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
-   //Chamar a função de autenticação
-   //     getAccessToken()
+
+   // Chamar a função de autenticação
+        getAccessToken()
+
     }
-  /*  private fun getAccessToken() {
+
+     private fun getAccessToken() {
         AuthClient.api.getAccessToken(
             clientId = "5930ba22b39d4ec88d24a5a984f49df9",
             clientSecret = "7b00b57476ec4e768199378296bafbf7"
@@ -56,9 +65,12 @@ class MainActivity : AppCompatActivity() {
                     Log.e("TOKEN", "Erro ao obter token: ${response.code()}")
                 }
             }
+
             override fun onFailure(call: Call<AuthResponse>, t: Throwable) {
                 Log.e("TOKEN", "Falha na autenticação: ${t.message}")
             }
         })
-    }*/
+    }
+
+
 }

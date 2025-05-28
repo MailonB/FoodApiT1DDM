@@ -1,13 +1,9 @@
 package com.example.foodapit1ddm
 
-//import com.example.foodapit1ddm.Api.AuthClient
-//import com.example.foodapit1ddm.Api.AuthResponse
-//import com.example.foodapit1ddm.Api.RetrofitClient
 import android.os.Bundle
-
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
@@ -32,21 +28,27 @@ class MainActivity : AppCompatActivity() {
 
         val navView: BottomNavigationView = binding.navView
 
-        val navController = findNavController(R.id.nav_host_fragment_activity_main)
+
+        val navHostFragment = supportFragmentManager
+            .findFragmentById(R.id.nav_host_fragment_activity_main) as NavHostFragment
+        val navController = navHostFragment.navController
+
         val appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications
+                R.id.navigation_home,
+                R.id.navigation_dashboard,
+                R.id.navigation_notifications
             )
         )
+
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
-   // Chamar a função de autenticação
-        getAccessToken()
 
+        getAccessToken()
     }
 
-     private fun getAccessToken() {
+    private fun getAccessToken() {
         AuthClient.api.getAccessToken(
             clientId = "5930ba22b39d4ec88d24a5a984f49df9",
             clientSecret = "7b00b57476ec4e768199378296bafbf7"
@@ -71,6 +73,4 @@ class MainActivity : AppCompatActivity() {
             }
         })
     }
-
-
 }

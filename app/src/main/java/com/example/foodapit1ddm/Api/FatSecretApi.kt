@@ -14,3 +14,4 @@ interface FatSecretApi {
         @Query("format") format: String = "json"
     ): Call<SearchResponse>
 }
+

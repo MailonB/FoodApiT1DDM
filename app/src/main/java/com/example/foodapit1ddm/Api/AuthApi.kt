@@ -14,4 +14,5 @@ interface AuthApi {
         @Field("client_id") clientId: String,
         @Field("client_secret") clientSecret: String
     ): Call<AuthResponse>
+
 }

@@ -1,4 +1,4 @@
-
+package com.example.foodapit1ddm.ui.home
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -14,7 +14,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.foodapit1ddm.R
 import com.example.foodapit1ddm.databinding.FragmentHomeBinding
-import com.example.foodapit1ddm.ui.home.HomeViewModel
 import com.example.foodapit1ddm.ui.login.LoginActivity
 
 class HomeFragment : Fragment() {

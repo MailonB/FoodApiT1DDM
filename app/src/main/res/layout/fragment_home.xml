@@ -4,19 +4,104 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".ui.home.HomeFragment">
 
+    <!-- Texto de boas-vindas -->
     <TextView
-        android:id="@+id/text_home"
-        android:layout_width="match_parent"
+        android:id="@+id/welcome_text"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:text="Bem-vindo ao"
+        android:textSize="18sp"
+        android:textColor="@color/black"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="20dp" />
+
+    <!-- Nome do App -->
+    <TextView
+        android:id="@+id/app_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TemperoZ"
+        android:textSize="36sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:fontFamily="sans-serif"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="40dp" />
+
+    <!-- Botão Buscar Receitas -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_search"
+        style="@style/Widget.Material3.Button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:minHeight="85dp"
+        android:textSize="20sp"
+        android:text="Buscar Receitas"
+        app:icon="@drawable/ic_search"
+        app:iconPadding="8dp"
+        app:iconSize="35dp"
+        android:iconTint="@color/white"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/purple_500"
+        app:cornerRadius="10dp"
+        app:layout_constraintTop_toBottomOf="@id/app_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="40dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp" />
+
+    <!-- Botão Receitas Favoritas -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_favorites"
+        style="@style/Widget.Material3.Button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:minHeight="85dp"
+        android:textSize="20sp"
+        android:text="Receitas Favoritas"
+        app:icon="@drawable/ic_favorite"
+        app:iconPadding="8dp"
+        app:iconSize="35dp"
+        android:iconTint="@color/white"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/purple_500"
+        app:cornerRadius="10dp"
+        app:layout_constraintTop_toBottomOf="@id/btn_search"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="40dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp" />
+
+    <!-- Botão Calcular Calorias -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_calories"
+        style="@style/Widget.Material3.Button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:minHeight="85dp"
+        android:textSize="20sp"
+        android:text="Calcular Calorias"
+        app:icon="@drawable/ic_calorie"
+        app:iconPadding="8dp"
+        app:iconSize="35dp"
+        android:iconTint="@color/white"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/purple_500"
+        app:cornerRadius="10dp"
+        app:layout_constraintTop_toBottomOf="@id/btn_favorites"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="40dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

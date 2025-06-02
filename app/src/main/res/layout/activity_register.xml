@@ -15,16 +15,16 @@
         android:padding="32dp">
 
         <EditText
-            android:id="@+id/etEmail"
+            android:id="@+id/etUsername"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_marginBottom="24dp"
-            android:hint="Login"
+            android:hint="Usuário"
             android:backgroundTint="@color/purple_500"
-            android:textColor="@color/black"
+            android:textColor="#000000"
             android:textSize="18sp"
             android:paddingHorizontal="12dp"
-            android:inputType="textEmailAddress"
+            android:inputType="text"
             android:fontFamily="sans-serif"
             android:textStyle="bold" />
 
@@ -35,7 +35,7 @@
             android:layout_marginBottom="24dp"
             android:hint="Senha"
             android:backgroundTint="@color/purple_500"
-            android:textColor="@color/black"
+            android:textColor="#000000"
             android:textSize="18sp"
             android:paddingHorizontal="12dp"
             android:inputType="textPassword"
@@ -43,11 +43,11 @@
             android:textStyle="bold" />
 
         <Button
-            android:id="@+id/btnLogin"
+            android:id="@+id/btnRegister"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:backgroundTint="@color/purple_500"
-            android:text="Login"
+            android:text="Cadastrar"
             android:textSize="18sp"
             android:textColor="#FFFFFF"
             android:fontFamily="sans-serif"
@@ -59,7 +59,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="32dp"
-            android:text="Não possui uma conta?"
+            android:text="Já possui uma conta?"
             android:textColor="#000000"
             android:textSize="16sp"
             android:fontFamily="sans-serif" />
@@ -70,7 +70,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="8dp"
-            android:text="Registre-se"
+            android:text="Faça o login"
             android:textColor="@color/purple_500"
             android:textSize="18sp"
             android:textStyle="bold"

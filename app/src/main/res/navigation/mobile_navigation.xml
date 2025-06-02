@@ -9,7 +9,18 @@
         android:id="@+id/navigation_home"
         android:name="com.example.foodapit1ddm.ui.home.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home">
+
+        <action
+            android:id="@+id/action_home_to_recipes"
+            app:destination="@id/recipesFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/recipesFragment"
+        android:name="com.example.foodapit1ddm.ui.recipes.RecipesFragment"
+        android:label="Receitas"
+        tools:layout="@layout/fragment_recipes" />
 
     <fragment
         android:id="@+id/navigation_dashboard"

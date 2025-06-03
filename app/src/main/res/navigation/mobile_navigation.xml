@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@id/navigation_home">
 
     <fragment
         android:id="@+id/navigation_home"
@@ -14,6 +14,10 @@
         <action
             android:id="@+id/action_home_to_recipes"
             app:destination="@id/recipesFragment" />
+        <action
+            android:id="@+id/action_home_to_favorites"
+            app:destination="@id/favoritesFragment" />
+
     </fragment>
 
     <fragment
@@ -21,6 +25,20 @@
         android:name="com.example.foodapit1ddm.ui.recipes.RecipesFragment"
         android:label="Receitas"
         tools:layout="@layout/fragment_recipes" />
+
+    <fragment
+        android:id="@+id/favoritesFragment"
+        android:name="com.example.foodapit1ddm.ui.favorites.FavoritesFragment"
+        android:label="Favoritos" />
+
+    <fragment
+        android:id="@+id/recipeDetailFragment"
+        android:name="com.example.foodapit1ddm.ui.favorites.RecipeDetailFragment"
+        android:label="Detalhes da Receita" />
+
+    <action
+        android:id="@+id/action_favoritesFragment_to_recipeDetailFragment"
+        app:destination="@id/recipeDetailFragment" />
 
     <fragment
         android:id="@+id/navigation_dashboard"

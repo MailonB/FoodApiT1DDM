@@ -30,12 +30,12 @@ class HomeFragment : Fragment() {
 
         // Clique dos botões principais
         binding.btnSearch.setOnClickListener {
-            // Navegação usando Navigation Component
             findNavController().navigate(R.id.action_home_to_recipes)
         }
 
+
         binding.btnFavorites.setOnClickListener {
-            // Exemplo: navegar para favoritos
+            findNavController().navigate(R.id.action_home_to_favorites)
         }
 
         binding.btnCalories.setOnClickListener {

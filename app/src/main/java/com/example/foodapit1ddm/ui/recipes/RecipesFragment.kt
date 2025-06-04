@@ -115,7 +115,7 @@ private fun searchFoods(token: String, query: String) {
         ) {
             if (response.isSuccessful) {
                 val searchResponse = response.body()
-                Log.d("FOOD", "Alimentos encontrados: ${searchResponse?.foods?.food.toString()}")
+                Log.d("FOOD", "Alimentos encontrados: ${searchResponse?.foods?.food}")
 
             } else {
                 Log.e("FOOD", "Erro ao buscar alimentos: ${response.code()}")

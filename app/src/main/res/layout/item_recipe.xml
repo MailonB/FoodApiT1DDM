@@ -1,27 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:padding="12dp"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#F9F9F9">
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="?android:attr/selectableItemBackground">
 
     <TextView
-        android:id="@+id/tvRecipeName"
-        android:layout_width="wrap_content"
+        android:id="@+id/tvFoodName"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Batata Frita"
-        android:textStyle="bold"
         android:textSize="18sp"
-        android:textColor="#000000" />
+        android:textStyle="bold"
+        android:textColor="@android:color/black" />
+
+    <TextView
+        android:id="@+id/tvBrandName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:textColor="@android:color/darker_gray"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/tvFoodDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:textSize="14sp"
+        android:maxLines="3"
+        android:ellipsize="end"
+        android:textColor="@android:color/darker_gray" />
 
     <TextView
         android:id="@+id/tvNutritionalInfo"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Por 100g - Cal: 86kcal | Gord: 0,05g | Carbs: 20,12g | Prot: 1,57g"
-        android:textSize="14sp"
-        android:textColor="#555555" />
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black" />
 
 </LinearLayout>

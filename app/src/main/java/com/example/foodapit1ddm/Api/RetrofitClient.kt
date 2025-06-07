@@ -1,20 +1,25 @@
 package com.example.foodapit1ddm.Api
 
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitClient {
-    private const val BASE_URL = "https://platform.fatsecret.com/"
-    val client: OkHttpClient = OkHttpClient.Builder()
+    val logging = HttpLoggingInterceptor().apply {
+        level = HttpLoggingInterceptor.Level.BODY}
+    val client = OkHttpClient.Builder()
+        .addInterceptor(logging)
         .build()
+
+    private const val BASE_URL = "https://platform.fatsecret.com/"
+
     val instance: FatSecretApi by lazy {
-        
-        Retrofit.Builder()
+        val retrofit = Retrofit.Builder()
             .baseUrl(BASE_URL)
+            .client(client) // Use o OkHttpClient com o logging interceptor
             .addConverterFactory(GsonConverterFactory.create())
-            .client(client)
             .build()
-            .create(FatSecretApi::class.java)
+        retrofit.create(FatSecretApi::class.java)
     }
 }

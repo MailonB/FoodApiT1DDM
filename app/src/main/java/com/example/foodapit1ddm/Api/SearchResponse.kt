@@ -1,6 +1,9 @@
 package com.example.foodapit1ddm.Api
 
-    data class SearchResponse(
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+data class SearchResponse(
         val foods: Foods
     )
 
@@ -8,6 +11,7 @@ package com.example.foodapit1ddm.Api
         val food: List<Food>
     )
 
+    @Parcelize
     data class Food(
         val food_id: Long,
         val food_name: String,
@@ -15,5 +19,5 @@ package com.example.foodapit1ddm.Api
         val food_type: String,
         val food_url: String,
         val food_description: String
-    )
+    ) : Parcelable
 

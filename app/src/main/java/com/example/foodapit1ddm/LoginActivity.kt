@@ -9,16 +9,10 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.foodapit1ddm.databinding.ActivityLoginBinding
 import com.example.foodapit1ddm.MainActivity
+import com.example.foodapit1ddm.model.UserProfile
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.Timestamp
-
-data class UserProfile(
-    val uid: String = "",
-    val email: String = "",
-    val name: String = "",
-    val createdAt: Timestamp? = null
-)
 
 class LoginActivity : AppCompatActivity() {
 
@@ -60,15 +54,15 @@ class LoginActivity : AppCompatActivity() {
         }
 
         // tem que fazer a tela de cadastro
-//        binding.tvCreateAccount.setOnClickListener {
-//            // Inicia a CreateAccountActivity para o fluxo de registro
-//            val intent = Intent(this, CreateAccountActivity::class.java)
-//            startActivity(intent)
-//        }
+        binding.tvCreateAccount.setOnClickListener {
+            val intent = Intent(this, RegisterActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun showLoading(isLoading: Boolean) {
         // colocar o loading na tela de login
+        binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
         binding.btnLogin.isEnabled = !isLoading
         binding.etEmail.isEnabled = !isLoading
         binding.etPassword.isEnabled = !isLoading

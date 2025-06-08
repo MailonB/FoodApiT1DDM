@@ -6,8 +6,10 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.foodapit1ddm.databinding.ActivityCreateAccountBinding
+import com.example.foodapit1ddm.model.UserProfile
+import com.example.foodapit1ddm.MainActivity
 import com.example.foodapit1ddm.databinding.ActivityLoginBinding
-import com.example.foodapit1ddm.databinding.ActivityRegisterBinding
 import com.example.foodapit1ddm.ui.recipes.RecipesFragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -17,73 +19,88 @@ import com.google.firebase.Timestamp
 
 class RegisterActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityLoginBinding
+
+    private lateinit var binding: ActivityCreateAccountBinding
     private lateinit var auth: FirebaseAuth
     private lateinit var db: FirebaseFirestore
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityLoginBinding.inflate(layoutInflater)
+        binding = ActivityCreateAccountBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         auth = FirebaseAuth.getInstance()
         db = FirebaseFirestore.getInstance()
 
-        // Verifica se um usuário já está logado ao iniciar a Activity
-        if (auth.currentUser != null) {
-            Log.d("RegisterActivity", "Usuário já logado: ${auth.currentUser?.email}")
-            navigateToRecipesActivity()
-            return
-        }
-
-
-        binding.btnLogin.setOnClickListener {
-            val email = binding.etEmail.text.toString().trim() // Agora é etEmail
+        binding.btnRegister.setOnClickListener {
+            val name = binding.etName.text.toString().trim()
+            val email = binding.etEmail.text.toString().trim()
             val password = binding.etPassword.text.toString().trim()
 
+
+            if (name.isEmpty()) {
+                binding.etName.error = "O nome não pode estar vazio"
+                binding.etName.requestFocus()
+                return@setOnClickListener
+            }
             if (email.isEmpty()) {
                 binding.etEmail.error = "O e-mail não pode estar vazio"
                 binding.etEmail.requestFocus()
                 return@setOnClickListener
             }
-
             if (password.isEmpty()) {
                 binding.etPassword.error = "A senha não pode estar vazia"
                 binding.etPassword.requestFocus()
                 return@setOnClickListener
             }
+            if (password.length < 6) { // Regra de senha forte do Firebase
+                binding.etPassword.error = "A senha deve ter pelo menos 6 caracteres"
+                binding.etPassword.requestFocus()
+                return@setOnClickListener
+            }
 
-            loginUser(email, password)
+
+            registerUser(name, email, password)
         }
 
-     binding.tvCreateAccount.setOnClickListener {
-//            // Opção 1 (Recomendada): Navegar para uma nova RegisterActivity
-//            val intent = Intent(this, CreateAccountActivity::class.java) // Crie uma nova Activity para registro
-//            startActivity(intent)
-         }
+
+        binding.tvLogin.setOnClickListener {
+
+            finish()
+        }
     }
 
     private fun showLoading(isLoading: Boolean) {
+        binding.progressBarRegister.visibility = if (isLoading) View.VISIBLE else View.GONE
+        binding.btnRegister.isEnabled = !isLoading
+        binding.etName.isEnabled = !isLoading
+        binding.etEmail.isEnabled = !isLoading
         binding.etPassword.isEnabled = !isLoading
-        binding.tvCreateAccount.isEnabled = !isLoading
+        binding.tvLogin.isEnabled = !isLoading
     }
 
-  // Firebase
-    private fun loginUser(email: String, password: String) {
+    private fun registerUser(name: String, email: String, password: String) {
         showLoading(true)
-        auth.signInWithEmailAndPassword(email, password)
+        auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 showLoading(false)
                 if (task.isSuccessful) {
-                    Log.d("RegisterActivity", "Login bem-sucedido!")
-                    Toast.makeText(this, "Login bem-sucedido! Bem-vindo(a) de volta!", Toast.LENGTH_SHORT).show()
-                    navigateToRecipesActivity() // Redireciona para a tela principal
+                    Log.d("CreateAccountActivity", "Usuário registrado com sucesso!")
+                    val user = auth.currentUser
+                    user?.let { firebaseUser ->
+
+                        saveUserProfileToFirestore(firebaseUser.uid, email, name)
+                    }
+                    Toast.makeText(this, "Registro bem-sucedido!", Toast.LENGTH_SHORT).show()
+                    navigateToRecipesActivity()
                 } else {
-                    Log.w("RegisterActivity", "Falha no login", task.exception)
+                    Log.w("CreateAccountActivity", "Falha no registro", task.exception)
+
                     val errorMessage = when (task.exception) {
-                        is com.google.firebase.auth.FirebaseAuthInvalidUserException -> "Usuário não encontrado ou desativado."
-                        is com.google.firebase.auth.FirebaseAuthInvalidCredentialsException -> "Credenciais inválidas. Verifique seu e-mail e senha."
-                        else -> "Falha no login: ${task.exception?.message}"
+                        is com.google.firebase.auth.FirebaseAuthWeakPasswordException -> "Senha muito fraca. Use pelo menos 6 caracteres."
+                        is com.google.firebase.auth.FirebaseAuthInvalidCredentialsException -> "Endereço de e-mail inválido ou já em uso."
+                        is com.google.firebase.auth.FirebaseAuthUserCollisionException -> "Este e-mail já está cadastrado. Tente fazer login."
+                        else -> "Falha no registro: ${task.exception?.message}"
                     }
                     Toast.makeText(this, errorMessage, Toast.LENGTH_LONG).show()
                 }
@@ -99,19 +116,18 @@ class RegisterActivity : AppCompatActivity() {
         )
 
         db.collection("users")
-            .document(uid) // Usa o UID do Firebase Auth como o ID do documento
+            .document(uid)
             .set(userProfile)
             .addOnSuccessListener {
-                Log.d("RegisterActivity", "Perfil do usuário salvo no Firestore para UID: $uid")
+                Log.d("CreateAccountActivity", "Perfil do usuário salvo no Firestore para UID: $uid")
             }
             .addOnFailureListener { e ->
-                Log.e("RegisterActivity", "Erro ao salvar perfil do usuário no Firestore", e)
+                Log.e("CreateAccountActivity", "Erro ao salvar perfil do usuário no Firestore", e)
             }
     }
 
-    // --- Método de Navegação ---
     private fun navigateToRecipesActivity() {
-        val intent = Intent(this, RecipesFragment::class.java)
+        val intent = Intent(this, MainActivity::class.java) // Chame sua Activity principal
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
         startActivity(intent)
         finish()

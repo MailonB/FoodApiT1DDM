@@ -7,7 +7,6 @@ data class RecipeSearchResponse(
     val recipes: RecipesContainer
 )
 
-
 data class RecipesContainer(
     val max_results: Int,
     val total_results: Int,

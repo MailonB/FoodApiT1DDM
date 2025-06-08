@@ -1,5 +1,6 @@
 package com.example.foodapit1ddm.Api
 
+import com.example.foodapit1ddm.model.RecipeSearchResponse
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Header
@@ -19,16 +20,12 @@ interface FatSecretApi {
 
     ): Call<SearchResponse>
 
-    //  Vou implementar
+    @GET("/rest/recipes/search/v3")
+    // trabalhando para pegar a receita
     fun searchRecipes(
         @Header("Authorization") auth: String,
-        @Query("method") method: String = "foods.search",
+        @Query("method") method: String = "recipes.search.v3",
         @Query("search_expression") query: String,
         @Query("format") format: String = "json",
-        @Query("region") region: String = "BR",
-        @Query("language") language: String = "pt"
-
-    ): Call<SearchResponse>
-
-
+    ): Call<RecipeSearchResponse>
 }

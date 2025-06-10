@@ -53,16 +53,14 @@ class RegisterActivity : AppCompatActivity() {
                 binding.etPassword.requestFocus()
                 return@setOnClickListener
             }
-            if (password.length < 6) { // Regra de senha forte do Firebase
+            if (password.length < 6) {
                 binding.etPassword.error = "A senha deve ter pelo menos 6 caracteres"
                 binding.etPassword.requestFocus()
                 return@setOnClickListener
             }
 
-
             registerUser(name, email, password)
         }
-
 
         binding.tvLogin.setOnClickListener {
 

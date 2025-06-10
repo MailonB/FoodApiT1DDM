@@ -33,7 +33,7 @@
 
     <fragment
         android:id="@+id/recipeDetailFragment"
-        android:name="com.example.foodapit1ddm.ui.favorites.RecipeDetailFragment"
+        android:name="com.example.foodapit1ddm.RecipeDetailFragment"
         android:label="Detalhes da Receita" />
 
     <action

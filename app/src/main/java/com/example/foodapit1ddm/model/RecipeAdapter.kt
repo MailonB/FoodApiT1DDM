@@ -1,6 +1,7 @@
 package com.example.foodapit1ddm.model
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +10,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.example.foodapit1ddm.R
 import com.bumptech.glide.Glide
+import com.example.foodapit1ddm.RecipeDetailActivity
 
 class RecipeAdapter(
     context: Context,
@@ -52,10 +54,18 @@ class RecipeAdapter(
                     .into(viewHolder.recipeImageView)
                 viewHolder.recipeImageView.visibility = View.VISIBLE
             } else {
-                viewHolder.recipeImageView.visibility = View.GONE
-                //colocar uma imagem padrão aqui
+                Glide.with(context)
+                    .load(R.drawable.placeholder_recipe_image)
+                    .into(viewHolder.recipeImageView)
+                viewHolder.recipeImageView.visibility = View.VISIBLE
+            }
+        }
+        view.setOnClickListener {
+            val intent = Intent(context, RecipeDetailActivity::class.java).apply {
+                putExtra("recipe_item", recipeItem)
             }
 
+            context.startActivity(intent)
         }
 
         return view

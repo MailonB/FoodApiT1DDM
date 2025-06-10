@@ -1,6 +1,7 @@
 package com.example.foodapit1ddm.Api
 
 import com.example.foodapit1ddm.model.RecipeSearchResponse // Certifique-se de que esta importação está correta
+import com.example.foodapit1ddm.model.SearchResponse
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Header

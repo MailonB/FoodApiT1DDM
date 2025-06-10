@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "356007708027",
+    "firebase_url": "https://foodapit1ddm-default-rtdb.firebaseio.com",
     "project_id": "foodapit1ddm",
     "storage_bucket": "foodapit1ddm.firebasestorage.app"
   },
@@ -12,7 +13,12 @@
           "package_name": "com.example.foodapit1ddm"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "356007708027-1u2afaudde5t8uk0vdm5etgkmpub755f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyCGSienaWCu4FowEzILxPZmKr060dqEwWI"
@@ -20,7 +26,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "356007708027-1u2afaudde5t8uk0vdm5etgkmpub755f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

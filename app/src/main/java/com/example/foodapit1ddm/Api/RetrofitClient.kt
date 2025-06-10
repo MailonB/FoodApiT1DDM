@@ -17,7 +17,7 @@ object RetrofitClient {
     val instance: FatSecretApi by lazy {
         val retrofit = Retrofit.Builder()
             .baseUrl(BASE_URL)
-            .client(client) // Use o OkHttpClient com o logging interceptor
+            .client(client)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
         retrofit.create(FatSecretApi::class.java)

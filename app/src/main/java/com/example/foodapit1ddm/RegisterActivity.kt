@@ -9,16 +9,11 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.foodapit1ddm.databinding.ActivityCreateAccountBinding
 import com.example.foodapit1ddm.model.UserProfile
 import com.example.foodapit1ddm.MainActivity
-import com.example.foodapit1ddm.databinding.ActivityLoginBinding
-import com.example.foodapit1ddm.ui.recipes.RecipesFragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.Timestamp
 
-
-
 class RegisterActivity : AppCompatActivity() {
-
 
     private lateinit var binding: ActivityCreateAccountBinding
     private lateinit var auth: FirebaseAuth
@@ -125,7 +120,7 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun navigateToRecipesActivity() {
-        val intent = Intent(this, MainActivity::class.java) // Chame sua Activity principal
+        val intent = Intent(this, MainActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
         startActivity(intent)
         finish()
